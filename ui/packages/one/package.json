@@ -1,0 +1,9 @@
+{
+	"name": "@pngwn/test-publish-one",
+	"version": "0.0.1",
+	"description": "Gradio UI packages",
+	"type": "module",
+	"main": "src/index.js",
+	"author": "",
+	"license": "ISC"
+}
