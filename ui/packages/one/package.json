@@ -1,7 +1,7 @@
 {
 	"name": "@pngwn/test-publish-one",
 	"version": "0.0.1",
-	"description": "Gradio UI packages",
+	"description": "test",
 	"type": "module",
 	"main": "src/index.js",
 	"author": "",
