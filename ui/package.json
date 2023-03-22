@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "Gradio UI packages",
 	"scripts": {
-		"ci:publish": "pnpm publish --no-git-checks -r"
+		"ci:publish": "pnpm publish --no-git-checks --access public -r"
 	},
 	"type": "module",
 	"author": "",
