@@ -24,7 +24,13 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
           node-version: 18
-          registry-url: "https://registry.npmjs.org"
+      # - name: Set token
+      #   env:
+      #     # setting the "npm_config_//registry.npmjs.org/:_authToken" env variable directly doesn't work.
+      #     # probably "pnpm release" doesn't pass auth tokens to child processes
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: |
+      #     npm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}" # pnpm config set is broken
       - name: install dependencies
         run: pnpm install --frozen-lockfile
       - name: create and publish versions
