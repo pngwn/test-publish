@@ -24,16 +24,10 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
           node-version: 18
-      # - name: Set token
-      #   env:
-      #     # setting the "npm_config_//registry.npmjs.org/:_authToken" env variable directly doesn't work.
-      #     # probably "pnpm release" doesn't pass auth tokens to child processes
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: |
-      #     npm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}" # pnpm config set is broken
       - name: install dependencies
         run: pnpm install --frozen-lockfile
       - name: create and publish versions
+        id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
@@ -43,3 +37,11 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: print
+        run: echo ${{ steps.changesets.outputs.pullRequestNumber }}
+      - name: label PR
+        if: ${{ steps.changesets.outputs.pullRequestNumber != 'undefined' }}
+        run: gh pr edit "$PR_URL" --add-label "no-changelog-update" 
+        env:
+          PR_URL: ${{ steps.changesets.outputs.pullRequestNumber }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Not sure if this one is required
