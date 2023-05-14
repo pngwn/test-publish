@@ -1,6 +1,6 @@
 {
 	"name": "@pngwn/test-publish-one",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "test",
 	"type": "module",
 	"main": "src/index.js",
