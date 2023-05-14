@@ -26,9 +26,7 @@ jobs:
           node-version: 18
           registry-url: "https://registry.npmjs.org"
       - name: install dependencies
-        run: pnpm install
-      - name: Setup npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+        run: pnpm install --fozen-lockfile
       - name: create and publish versions
         uses: changesets/action@v1
         with:
